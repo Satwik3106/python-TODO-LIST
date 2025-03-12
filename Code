@@ -1,4 +1,4 @@
-Implementing Python Code:
+#Implementing Python Code:
 
 import mysql.connect(
 host = 'localhost',
@@ -15,65 +15,65 @@ db.commit()
 print("task added succesfully")
 
 def viewtask():
-cursor = db.cursor()
-sql = "SELECT * FROM tasks"
-cursor.execute(sql)
-tasks = cursor.fetchall()
-if (tasks):
-for task in tasks:
-print(f"Task ID: {task[0]},Task Name : {task[1]}, Description:{task[2]},Completed: {'yes' if task[3] else 'No}")
-else:
-print("no tasks in the databases")
+  cursor = db.cursor()
+  sql = "SELECT * FROM tasks"
+  cursor.execute(sql)
+  tasks = cursor.fetchall()
+  if (tasks):
+    for task in tasks:
+      print(f"Task ID: {task[0]},Task Name : {task[1]}, Description:{task[2]},Completed: {'yes' if task[3] else 'No}")
+  else:
+    print("no tasks in the databases")
 
 
 def markcompleted(taskid):
-cursor = db.cursor()
-sql = "UPDATE tasks SET is_completed = 1 WHERE id = %s"
-val = (taskid,)
-cursor.execute(sql,val)
-db.commit()
-print("Task marked as completed")
+  cursor = db.cursor()
+  sql = "UPDATE tasks SET is_completed = 1 WHERE id = %s"
+  val = (taskid,)
+  cursor.execute(sql,val)
+  db.commit()
+  print("Task marked as completed")
 
 
 def deletetask(taskid):
-cursor = db.cursor()
-sql = "DELETE FROM tasks WHERE id = %s"
-val = (taskid)
-cursor.execute(sql,val)
-db.commit()
-print("Task added successfully")
+  cursor = db.cursor()
+  sql = "DELETE FROM tasks WHERE id = %s"
+  val = (taskid)
+  cursor.execute(sql,val)
+  db.commit()
+  print("Task added successfully")
 
 if __name__=="__main__":
-while True:
-print('\n---To Do List---")
-print("1.Add TAsk")
-print("2..view tasks")
-print("3.mark tasks as completed")
-print("4.delete tasks")
-print("5. exit")
+  while True:
+    print('\n---To Do List---")
+    print("1.Add TAsk")
+    print("2..view tasks")
+    print("3.mark tasks as completed")
+    print("4.delete tasks")
+    print("5. exit")
 
 choice = int(input("Enter your choice: "))
 
 if choice == 1:
-taskname = input("Enter the task name: ")
-description = input("Enter the description: ")
+  taskname = input("Enter the task name: ")
+  description = input("Enter the description: ")
 addtask(taskname,descripton)
 
 elif choice == 2:
-print("\n---Task---")
-view_tasks()
+  print("\n---Task---")
+  view_tasks()
 
 elif choice == 3:
-taskid = int(input("Enter the taskid  to mark as completed: "))
-markcompleted(taskid)
+  taskid = int(input("Enter the taskid  to mark as completed: "))
+  markcompleted(taskid)
 
 elif choice == 4:
-taskid = int(input("enter the task id to delete:"))
-deletetask(taskid)
+  taskid = int(input("enter the task id to delete:"))
+  deletetask(taskid)
 
 elif choice == 5:
-print("GoodBye!")
+  print("GoodBye!")
 break
 
 else:
-print("INvalid choice.PLease try again!")
+  print("INvalid choice.PLease try again!")
